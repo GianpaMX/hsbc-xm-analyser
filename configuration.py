@@ -1,6 +1,15 @@
+import csv
+
+
 class Configuration(object):
     def __init__(self):
-        pass
+        self.categoryByRFC = {}
 
     def readFrom(self, filename):
-        pass
+        file = open(filename)
+
+        reader = csv.DictReader(file)
+        for row in reader:
+            self.categoryByRFC[row['rfc']] = row['category']
+
+        file.close()
